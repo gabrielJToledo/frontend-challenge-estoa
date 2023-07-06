@@ -1,42 +1,25 @@
-# Desafio front-end da Estoa
+## Informações Gerais
+Este é um projeto desenvolvido para o teste da Estoa. O objetivo é criar uma página de catálogos que exiba as pessoas que compõem os filmes de Star Wars e mostre suas características.
+	
+## Tecnologias
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-Esse repositório é o nosso desafio para avaliar o quão bom desenvolvedor front-end você é.
+* Tailwind
+* React
+* Redux
 
-Provavelmente você já está participando do nosso processo de contratação, mas se você caiu aqui por acaso, leia o documento até o final e caso haja interesse, você pode começar daqui mesmo.
+## Como Executar a Aplicação
 
+## Frontend 
 
-## Sobre o desafio
+Após clonar o projeto, acesse a branch chamada "desafio".
 
-Esse é um desafio, não um teste ou uma prova de faculdade, portanto não há uma única resposta certa.
+No terminal, navegue até a pasta "frontend" e instale as dependências usando o seguinte comando:
 
-Daremos a você alguns requisitos que devem ser cumpridos, e pelos quais você será avaliado, mas deixamos livre a escolha do método de solução.
+- npm install
 
-O que nós esperamos aprender de você com o desafio:
+Após a instalação das dependências, execute o seguinte comando para iniciar a aplicação:
 
-- Seu estilo de trabalho
-- Como você pensa e resolve problemas
-- Como você se comunica
+- npm start
 
-O que nós esperamos que você aprenda sobre a Estoa:
-
-- Como nós trabalhamos como um time.
-- Tenha uma visão próxima dos desafios que enfrentamos no dia-a-dia.
-
-## Próximos passos
-
-1. Faça um _fork_ desse repositório para sua conta pessoal.
-2. As instruções do desafio se encontram no arquivo [`CHALLENGE.md`](/CHALLENGE.md).
-2. Resolva o desafio da forma que você julgar mais adequada.
-3. Preferencialmente utilize uma _branch_ chamada `desafio` ou com o seu nome (`nome-sobrenome`) para o desenvolvimento. E submeta o _pull-request_ para essa mesma _branch_.
-
-## Considerações
-
-- Nós não iremos limitar a sua escolha por ferramentas e bibliotecas, porém é de suma importância que use React.js, faça escolhas que sejam condizentes com o desafio apresentado. Para que utilizar uma bazuca para matar uma formiga?
-- Tente escrever o melhor código possível para que possamos avaliar o seu _pull-request_ com mais facilidade. E lembre-se: Você vai ter que explicar pessoalmente para nós depois.
-- Também leve em consideração que estamos availando como será o seu modo de trabalho no nosso dia a dia. Então, use as melhores práticas de semântica, estruturação, legibilidade e componentização.
-
-## Dúvidas?
-
-Ficou com alguma dúvida sobre como irá funcionar o processo? Entre em contato que nós te ajudaremos com o processo.
-
-**Boa sorte!**
+Isso iniciará o servidor de desenvolvimento e você poderá acessar a aplicação no seu navegador pelo endereço http://localhost:3000/.
