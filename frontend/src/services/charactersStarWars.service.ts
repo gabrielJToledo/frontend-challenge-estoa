@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
 import axios from 'axios'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { useAppDispatch } from '../store/hooks'
 import { getCharactersFromAPI } from '../store/ducks/charactersStarWars/actions'
 
 export const useGetCharactersStarWarsFromAPI = () => {
   const dispatch = useAppDispatch()
-  const nextUrl = useAppSelector((state) => state.charactersStarWars.nextCharacterUrl)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(nextUrl)
+        const response = await axios.get(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}`)
         const charactersFromAPI = response.data
 
         await Promise.all(
@@ -38,5 +37,5 @@ export const useGetCharactersStarWarsFromAPI = () => {
     }
 
     fetchData()
-  }, [dispatch, nextUrl])
+  }, [dispatch])
 }
