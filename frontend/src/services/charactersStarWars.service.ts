@@ -1,15 +1,16 @@
-import { useEffect } from 'react'
-import axios from 'axios'
-import { useAppDispatch } from '../store/hooks'
-import { getCharactersFromAPI } from '../store/ducks/charactersStarWars/actions'
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { getCharactersFromAPI } from '../store/ducks/charactersStarWars/actions';
 
 export const useGetCharactersStarWarsFromAPI = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const nextUrl = useAppSelector((state) => state.charactersStarWars.nextCharacterUrl)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}`)
+        const response = await axios.get(nextUrl)
         const charactersFromAPI = response.data
 
         await Promise.all(
@@ -20,22 +21,33 @@ export const useGetCharactersStarWarsFromAPI = () => {
               try {
                 const speciesResponse = await axios.get(data.species[0])
                 data.species = speciesResponse.data.name
-              } catch (error) {
-                console.log(error)
+              } catch (err) {
+                console.log(err)
               }
             }
 
             const homeworldResponse = await axios.get(data.homeworld)
             data.homeworld = homeworldResponse.data.name
+
+            await Promise.all(
+              data.films.map(async (filmUrl: string, index: number) => {
+                try {
+                  const filmResponse = await axios.get(filmUrl)
+                  data.films[index] = filmResponse.data.title
+                } catch (err) {
+                  console.log(err)
+                }
+              })
+            );
           })
-        )
+        );
 
         dispatch(getCharactersFromAPI(charactersFromAPI.results))
-      } catch (error) {
-        console.log(error)
+      } catch (err) {
+        console.log(err)
       }
-    }
+    };
 
-    fetchData()
-  }, [dispatch])
-}
+    fetchData();
+  }, [dispatch, nextUrl])
+};
