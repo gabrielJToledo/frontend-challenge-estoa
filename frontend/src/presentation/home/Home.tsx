@@ -1,14 +1,29 @@
-import React from 'react'
-import { useAppSelector } from '../../store/hooks';
+import React, { useState } from 'react'
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { Link } from 'react-router-dom'
+import { setCurrentCharacterUrl, setNextCharacterUrl } from '../../store/ducks/charactersStarWars/actions';
 
 function Home() {
-
+  const dispatch = useAppDispatch()
   const allCharactersFromAPI = useAppSelector((state) => state.charactersStarWars.charactersStarWars);
+  const [pages, setPages] = useState(1)
 
   const handleSetCurrentCharacterUrl = (characterUrl: any) => {
-
+    dispatch(setCurrentCharacterUrl(characterUrl))
   }
+
+  const handleSetNextCharacterUrl = () => {
+    const nextPage = Math.min(pages + 1, 9)
+    setPages(nextPage);
+    dispatch(setNextCharacterUrl(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}/?page=${nextPage}`))
+  }
+
+  const handleSetLastCharacterUrl = () => {
+    const previousPage = Math.max(pages - 1, 1)
+    setPages(previousPage);
+    dispatch(setNextCharacterUrl(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}/?page=${previousPage}`))
+  }
+
 
   return (
     <div className="max-w-5xl w-full">
@@ -49,7 +64,14 @@ function Home() {
         )}
       </div>
 
-
+      <div className='flex justify-center mt-7'>
+        <button onClick={handleSetLastCharacterUrl} className="rounded-full shadow-md shadow-black text-slate-300 bg-blue-700 p-2 mx-3">
+          Página Anterior
+        </button>
+        <button onClick={handleSetNextCharacterUrl} className="rounded-full shadow-md shadow-black text-slate-300 bg-blue-700 p-2 mx-3">
+          Próxima Página
+        </button>
+      </div>
     </div>
   )
 }
