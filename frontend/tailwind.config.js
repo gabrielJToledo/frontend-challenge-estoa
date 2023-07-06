@@ -13,6 +13,9 @@ module.exports = {
         },
         card: '#161b22',
         headerCard: '#222936'
+      },
+      backgroundImage: {
+        starfield: "url('/assets/starfield.jpg')"
       }
     },
   },
