@@ -1,3 +1,5 @@
 export enum charactersStarWarsTypes {
-    getCharactersFromAPI = 'getCharactersFromAPI'
+    getCharactersFromAPI = 'getCharactersFromAPI',
+    setCurrentCharacterUrl = 'setCurrentCharacterUrl',
+    setNextCharacterUrl = 'setNextCharacterUrl',
 }
