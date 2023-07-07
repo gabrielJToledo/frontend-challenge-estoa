@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { Link } from 'react-router-dom'
-import { setCurrentCharacterUrl, setNextCharacterUrl } from '../../store/ducks/charactersStarWars/actions';
+import { setCurrentCharacterUrl, setNextCharacterUrl, getCharactersFromAPI } from '../../store/ducks/charactersStarWars/actions';
 import { ICharacter } from '../../interfaces/character.interface';
 
 function Home() {
@@ -15,12 +15,14 @@ function Home() {
 
   const handleSetNextCharacterUrl = () => {
     const nextPage = Math.min(pages + 1, 9)
+    dispatch(getCharactersFromAPI(null))
     setPages(nextPage);
     dispatch(setNextCharacterUrl(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}/?page=${nextPage}`))
   }
 
   const handleSetLastCharacterUrl = () => {
     const previousPage = Math.max(pages - 1, 1)
+    dispatch(getCharactersFromAPI(null))
     setPages(previousPage);
     dispatch(setNextCharacterUrl(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}/?page=${previousPage}`))
   }
