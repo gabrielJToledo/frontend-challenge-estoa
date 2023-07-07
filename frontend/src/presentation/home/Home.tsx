@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { Link } from 'react-router-dom'
 import { setCurrentCharacterUrl, setNextCharacterUrl } from '../../store/ducks/charactersStarWars/actions';
+import { ICharacter } from '../../interfaces/character.interface';
 
 function Home() {
   const dispatch = useAppDispatch()
   const allCharactersFromAPI = useAppSelector((state) => state.charactersStarWars.charactersStarWars);
   const [pages, setPages] = useState(1)
 
-  const handleSetCurrentCharacterUrl = (characterUrl: any) => {
+  const handleSetCurrentCharacterUrl = (characterUrl: String) => {
     dispatch(setCurrentCharacterUrl(characterUrl))
   }
 
@@ -23,7 +24,6 @@ function Home() {
     setPages(previousPage);
     dispatch(setNextCharacterUrl(`${process.env.REACT_APP_CHARACTERS_STAR_WARS_API}/?page=${previousPage}`))
   }
-
 
   return (
     <div className="max-w-5xl w-full">
@@ -42,7 +42,7 @@ function Home() {
             </div>
           ))
         ) : (
-          allCharactersFromAPI?.map((characterStarWars: any) => (
+          allCharactersFromAPI?.map((characterStarWars: ICharacter) => (
             <Link
               to={`/personagem/${characterStarWars.name}`}
               onClick={() => handleSetCurrentCharacterUrl(characterStarWars.url)}

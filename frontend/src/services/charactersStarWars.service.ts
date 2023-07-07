@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getCharactersFromAPI } from '../store/ducks/charactersStarWars/actions';
+import { ICharacter } from '../interfaces/character.interface';
 
 export const useGetCharactersStarWarsFromAPI = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +15,7 @@ export const useGetCharactersStarWarsFromAPI = () => {
         const charactersFromAPI = response.data
 
         await Promise.all(
-          charactersFromAPI.results.map(async (data: any) => {
+          charactersFromAPI.results.map(async (data: ICharacter) => {
             if (data.species.length === 0) {
               data.species = 'Humano'
             } else {

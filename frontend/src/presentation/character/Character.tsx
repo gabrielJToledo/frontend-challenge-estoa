@@ -6,7 +6,7 @@ function Character() {
   const allCharacterFromAPI = useAppSelector((state) => state.charactersStarWars.charactersStarWars)
   const currentCharacterURL = useAppSelector((state) => state.charactersStarWars.currentCharacter)
 
-  const currentCharacter = allCharacterFromAPI && allCharacterFromAPI.find((character: any) => character.url === currentCharacterURL)
+  const currentCharacter = allCharacterFromAPI && allCharacterFromAPI.find((character: { url: string }) => character.url === currentCharacterURL);
 
   return (
     <div className="max-w-5xl  flex justify-center w-full">
@@ -50,11 +50,10 @@ function Character() {
             <p className="text-slate-500">{currentCharacter.homeworld}</p>
 
             <p className="text-slate-300 font-bold">Filmes</p>
-            {currentCharacter.films.map((film: any) => {
+            {currentCharacter.films.map((film: String) => {
               return <p className="text-slate-500">{film}</p>
             })}
             
-
             <p className="text-slate-300 font-bold">Espécie</p>
             <p className="text-slate-500">{currentCharacter.species}</p>
           </div>
