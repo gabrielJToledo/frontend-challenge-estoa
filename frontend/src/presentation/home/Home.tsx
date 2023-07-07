@@ -57,7 +57,12 @@ function Home() {
 
               <div className="p-4">
                 <p className="text-slate-300 font-bold">Espécie</p>
-                <p className="text-slate-500">{characterStarWars.species}</p>
+                <p className="text-slate-500">{characterStarWars.species.length === 1 || characterStarWars.species.length === 0 ? (
+                  <div className='h-5 bg-slate-700 blink-32 py-2'></div>
+                ) : (
+                  <div>{characterStarWars.species}</div>
+                )}
+                </p>
                 <p className="text-slate-300 font-bold">Ano de Nascimento</p>
                 <p className="text-slate-500">{characterStarWars.birth_year}</p>
               </div>

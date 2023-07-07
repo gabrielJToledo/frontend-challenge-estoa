@@ -8,6 +8,8 @@ function Character() {
 
   const currentCharacter = allCharacterFromAPI && allCharacterFromAPI.find((character: { url: string }) => character.url === currentCharacterURL);
 
+  console.log(currentCharacter.species)
+
   return (
     <div className="max-w-5xl  flex justify-center w-full">
       {!currentCharacter ? (
@@ -47,15 +49,34 @@ function Character() {
             <p className="text-slate-500">{currentCharacter.skin_color}</p>
 
             <p className="text-slate-300 font-bold">Planeta Natal</p>
-            <p className="text-slate-500">{currentCharacter.homeworld}</p>
+
+            {currentCharacter.homeworld.startsWith("https") ? (
+              <div className='h-5 bg-slate-700 blink-32 py-2'></div>
+            ) : (
+              <p className="text-slate-500">
+                {currentCharacter.homeworld}
+              </p>
+            )}
+
 
             <p className="text-slate-300 font-bold">Filmes</p>
             {currentCharacter.films.map((film: String) => {
-              return <p className="text-slate-500">{film}</p>
+              return film.startsWith("https") ? (
+                <div className='h-5 bg-slate-700 blink-32 py-2'></div>
+              ) : (
+                <p className="text-slate-500">
+                  {film}
+                </p>
+              );
             })}
-            
+
             <p className="text-slate-300 font-bold">Espécie</p>
-            <p className="text-slate-500">{currentCharacter.species}</p>
+            <p className="text-slate-500">{currentCharacter.species.length === 1 || currentCharacter.species.length === 0 ? (
+              <div className='h-5 bg-slate-700 blink-32 py-2'></div>
+            ) : (
+              <div>{currentCharacter.species}</div>
+            )}
+            </p>
           </div>
         </div>
       )}

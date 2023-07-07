@@ -14,6 +14,21 @@ export const useGetCharactersStarWarsFromAPI = () => {
         const response = await axios.get(nextUrl)
         const charactersFromAPI = response.data
 
+        dispatch(getCharactersFromAPI(charactersFromAPI.results))
+      } catch (err) {
+        console.log(err)
+      }
+    };
+
+    fetchData();
+  }, [dispatch, nextUrl])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(nextUrl)
+        const charactersFromAPI = response.data
+
         await Promise.all(
           charactersFromAPI.results.map(async (data: ICharacter) => {
             if (data.species.length === 0) {
